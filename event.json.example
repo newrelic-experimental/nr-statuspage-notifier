@@ -1,0 +1,12 @@
+{
+    "considered_status" : ["degraded_performance", "partial_outage", "major_outage"], 
+    "considered_regions" : ["US","EU"],
+    "slack_webhook_urls" : ["https://hooks.slack.com/services/XXX/YYY/YOURWEBHOOK"],
+    "s3_bucket": "your-s3-bucket-name",
+    "s3_filename": "latest.json",
+    "nr_api_key": "your-newrelic-api-key-",
+
+    //only include one of these below depending if you want events or metrics. Metrics is preferred.
+    "nr_events_api": "https://insights-collector.newrelic.com/v1/accounts/YOUR-ACCOUNT-ID/events",
+    "nr_metrics_api": "https://metric-api.newrelic.com/metric/v1"
+}

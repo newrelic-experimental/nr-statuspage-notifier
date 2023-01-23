@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  nr-statuspage-notifier
+
+  Sample SAM Template for nr-status-notifier
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 60
+    MemorySize: 128
+    Tracing: Active
+  Api:
+    TracingEnabled: True
+
+
+Parameters:
+  event:
+    Type: String
+    Description: Configuration event to send on schedule
+
+Resources:
+  StatusCheckFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: nr_status_checker/
+      Handler: app.lambda_handler
+      Runtime: python3.9
+      Architectures:
+        - x86_64
+      Role: arn:aws:iam::YOUR-ROLE-HERE
+      Events:
+        Schedule:
+          Type: Schedule
+          Properties:
+            Name: Every_5_minutes
+            Schedule: 'rate(5 minutes)'
+            Input: !Ref event
+
+Outputs:
+  StatusCheckFunction:
+    Description: "Function ARN"
+    Value: !GetAtt StatusCheckFunction.Arn
+
