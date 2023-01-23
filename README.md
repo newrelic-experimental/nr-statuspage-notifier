@@ -5,7 +5,7 @@ This project checks the [New Relic status page](https://status.newrelic.com) for
 
 N.B. For a simpler (but more noisy and less concise) integration you could simply subscribe slack to the status RSS feed: https://status.newrelic.com/history.rss. You can also sign up for email alerts.
 
-!(Screenshot)[slack-screenshot.png]
+![Screenshot](slack-screenshot.png)
 
 ## AWS Lambda Setup
 
